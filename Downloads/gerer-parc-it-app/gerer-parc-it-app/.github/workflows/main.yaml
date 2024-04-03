@@ -1,0 +1,30 @@
+name: "workflow principal de cheung"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v3
+
+      - name: Set up de Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Build du projet
+        shell: bash
+        run: |
+          ./gradlew build
+
+      - name: Test du projet
+        shell: bash
+        run: |
+          ./gradlew test
